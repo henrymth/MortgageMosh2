@@ -10,14 +10,25 @@ public class Main {
 	// write your code here
         final byte MONTH_IN_YEAR = 12;
         final byte PERCENT = 100;
+        int principal =0;
+        float monthlyInterest =0;
 
-        System.out.print("Principal : ");
         Scanner scanner = new Scanner(System.in);
-        int principal = scanner.nextInt();
 
-        System.out.print("Annual Interest Rate: ");
-        float annualInterest = scanner.nextFloat();
-        float monthlyInterest = annualInterest / PERCENT / MONTH_IN_YEAR;
+        while (true) {
+            System.out.print("Principal : ");
+            principal = scanner.nextInt();
+            if (principal >= 1000 && principal <= 1_000_000) break;
+            System.out.println("Enter a value between 1000 and 1 000 000");
+        }
+
+        while (true) {
+            System.out.print("Annual Interest Rate: ");
+            float annualInterest = scanner.nextFloat();
+            if (annualInterest >= 1 && annualInterest <= 50) break;
+            monthlyInterest = annualInterest / PERCENT / MONTH_IN_YEAR;
+            System.out.println("Enter a value between 5 and 50");
+        }
 
         System.out.print("Period (Years): ");
         byte years = scanner.nextByte();
