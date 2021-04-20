@@ -1,8 +1,6 @@
 package com.mudah_technology_mortgage_mosh;
 
-import java.sql.SQLOutput;
 import java.text.NumberFormat;
-import java.util.Scanner;
 
 public class Main {
     final static byte MONTH_IN_YEAR = 12;
@@ -10,9 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        int principal = (int) readNumber("Principal / Jumlah pinjaman (1000-1jt) : ", 1000, 500_000_000);
-        float annualInterest = (float) readNumber("Annual Interest Rate: ", 1, 50);
-        byte years = (byte) readNumber("Period (Years): ",1,20);
+        int principal = (int) Console.readNumber("Principal / Jumlah pinjaman (1000-1jt) : ", 1000, 500_000_000);
+        float annualInterest = (float) Console.readNumber("Annual Interest Rate: ", 1, 50);
+        byte years = (byte) Console.readNumber("Period (Years): ",1,20);
 
         printMortgage(principal, annualInterest, years);
         printPaymentSchedule(principal, annualInterest, years);
@@ -37,18 +35,6 @@ public class Main {
                     "Payment ke " + month + ": "
                     + NumberFormat.getCurrencyInstance().format(balance));
         }
-    }
-
-    public static double readNumber (String prompt, double min, double max) {
-        Scanner scanner = new Scanner(System.in);
-        double value;
-        while (true) {
-            System.out.print(prompt);
-            value = scanner.nextFloat();
-            if (value >= min && value <= max) break;
-            System.out.println("Enter a value between " + min +  " and " + max + "");
-        }
-        return value;
     }
 
     public static double calculateBalance (
