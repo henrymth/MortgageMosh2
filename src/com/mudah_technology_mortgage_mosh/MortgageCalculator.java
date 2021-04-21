@@ -1,8 +1,8 @@
 package com.mudah_technology_mortgage_mosh;
 
 public class MortgageCalculator {
-    public final static byte MONTH_IN_YEAR = 12;
-    public final static byte PERCENT = 100;
+    private final static byte MONTH_IN_YEAR = 12;
+    private final static byte PERCENT = 100;
 
     private int principal;
     private float annualInterest;
@@ -38,10 +38,13 @@ public class MortgageCalculator {
         return mortgage;
     }
 
-    public double[] getRemainingBalances(){
-        for (short month = 1; month <= getNumberOfPayments; month++) {
-            double balance = calculator.calculateBalance(month);
+    public double[] getRemainingBalances() {
+        var balances =new double[getNumberOfPayments()];
+        for (short month = 1; month <= balances.length; month++) {
+            balances[month-1]= calculateBalance(month);
         }
+        return balances;
+    }
 
     private float getMonthlyInterest() {
         return annualInterest / PERCENT / MONTH_IN_YEAR;
@@ -49,9 +52,5 @@ public class MortgageCalculator {
 
     private short getNumberOfPayments() {
         return (short) (years * MONTH_IN_YEAR);
-    }
-
-    public short getYears() {
-        return years;
     }
 }
